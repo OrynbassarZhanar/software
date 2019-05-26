@@ -1,0 +1,83 @@
+<div *ngIf="!logged">
+  <input type="text" placeholder="username..." [(ngModel)]="username">
+  <input type="text" placeholder="password..." [(ngModel)]="password">
+  <button (click) = "login()" class= "login">Login</button>
+</div>
+<div *ngIf = "logged">
+  <button (click) = "logout()" class= "login">Log out</button>
+  <div class="competitions">
+    <div class="content">
+      <div class="inCompetitions">
+        <div *ngFor="let t of competitions" (click) = "getMemberOfCompetition(t)" class = "competition">
+          <div class="data">
+            <input type="text" [(ngModel)]="t.name">
+          </div>
+          <span (click) = "updateCompetition(t)">CHANGE</span>
+          <span (click) = "deleteCompetition(t)">DELETE</span>
+          <span (click) = "getMemberOfCompetition(t)">SHOW</span>
+        </div>
+        <div class="create">
+          <input type="text" class = "createInput" id = "createInput" placeholder="New competition name" [(ngModel)]="name">
+          <button class="createBtn" (click) = "createCompetition()">CREATE</button>
+        </div>
+        <div class="sortBy">
+          <select name="sorting" id="sorting" [(ngModel)]="sorting">
+            <option value="ordering=name">name +ASC</option>
+            <option value="ordering=-name">name -DESC</option>
+          </select>
+          <button (click)="sort()">Sort</button>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="type words..." [(ngModel)]="searchCompetition">
+          <button (click)="sort()">Search</button>
+        </div>
+      </div>
+
+      <div class="inMembers">
+          <div class="inMembers__container">
+            <div *ngFor = "let t of members" class = "members">
+              <div class="memberInfo">
+                <div><span> Name: </span> <input type="text" [(ngModel)]="t.name"></div>
+                <div><span>Competition: {{t.competition.name}}</span></div>
+                <div><span> Status: </span> <input type="text" [(ngModel)]="t.status"></div>
+                <div><span> Created_at: </span> {{formatDate(t.created_at)}}</div>
+                <div><span> Due_on: </span> {{formatDate(t.due_on)}}</div>
+              </div>
+              <div class="bttns">
+                <span (click) = "updateMember(t)">CHANGE</span>
+                <span (click) = "deleteMember(t)">DELETE</span>
+              </div>
+            </div>
+          </div>
+        <div class="inMembers__create">
+          <input type="text" class = "createInput" placeholder="New name" [(ngModel)]="memberName">
+          <input type="text" class = "createInput" placeholder="New status" [(ngModel)]="memberStatus">
+          <button class="createBtn" (click) = "createMember()">CREATE</button>
+        </div>
+        <div class="sortBy">
+          <select name="sorting" id="sortMembers" [(ngModel)]="sortMembers">
+            <option value="name">name +ASC</option>
+            <option value="-name">name -DESC</option>
+            <option value="status">status +ASC</option>
+            <option value="-status">status -DESC</option>
+            <option value="created_at">created_at +ASC</option>
+            <option value="-created_at">created_at -DESC</option>
+          </select>
+          <button (click)="sortingOfMembers()">Sort</button>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="type words..." [(ngModel)]="searchMember">
+          <button (click)="sortingOfMembers()">Search</button>
+        </div>
+        <div class="filter">
+          <select name="filter" id="filter" [(ngModel)]="filterName">
+            <option value="name">name</option>
+            <option value="status">status</option>
+          </select>
+          <input type="text" placeholder="type words..." [(ngModel)]="filterValue">
+          <button (click)="sortingOfMembers()">Filter</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
