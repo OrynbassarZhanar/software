@@ -49,7 +49,7 @@ class CompetitionMembersAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         try:
             competition = Competition.objects.for_user(user=self.request.user).get(id=self.kwargs['pk'])
-        except TaskList.DoesNotExist:
+        except Competition.DoesNotExist:
             raise Http404
         return competition.member_set.all()
 

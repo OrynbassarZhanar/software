@@ -22,23 +22,23 @@ class Migration(migrations.Migration):
                 ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': 'TaskList',
-                'verbose_name_plural': 'TaskLists',
+                'verbose_name': 'Competition',
+                'verbose_name_plural': 'Competitions',
             },
         ),
         migrations.CreateModel(
-            name='Task',
+            name='Member',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('created_at', models.DateTimeField()),
                 ('due_on', models.DateTimeField()),
                 ('status', models.CharField(max_length=200)),
-                ('task_list', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.TaskList')),
+                ('task_list', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Competition')),
             ],
             options={
-                'verbose_name': 'Task',
-                'verbose_name_plural': 'Tasks',
+                'verbose_name': 'Member',
+                'verbose_name_plural': 'Members',
             },
         ),
     ]

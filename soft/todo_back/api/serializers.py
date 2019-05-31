@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 class CompetitionSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     created_by = UserSerializer(required=False)
+    discription = serializers.CharField(required=False)
 
     class Meta:
         model = Competition
